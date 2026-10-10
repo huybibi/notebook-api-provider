@@ -1,0 +1,51 @@
+{
+  "name": "notebook-api-provider",
+  "productName": "Notebook API Provider",
+  "version": "0.1.0",
+  "description": "Sổ tay quản lý API key, hạn mức và xếp hạng các nhà cung cấp model miễn phí",
+  "main": "src/main/main.js",
+  "private": true,
+  "author": "huybibi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huybibi/notebook-api-provider.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "dist": "npx --yes electron-builder --win --x64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0"
+  },
+  "build": {
+    "appId": "dev.local.notebook-api-provider",
+    "productName": "Notebook API Provider",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

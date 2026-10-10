@@ -1,0 +1,14 @@
+node_modules/
+dist/
+release/
+out/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+.electron-builder-cache/
+tools/smoke.out.txt
+tools/smoke.err.txt

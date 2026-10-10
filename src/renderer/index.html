@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src http://127.0.0.1:* http://localhost:*"
+    />
+    <title>Notebook API Provider</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <img class="brand-mark" src="logo.png" alt="Notebook API Provider" />
+          <div class="brand-text">
+            <strong data-i18n="app.name">Notebook</strong>
+            <span data-i18n="app.tagline">Sổ tay nhà cung cấp model</span>
+          </div>
+        </div>
+
+        <nav class="nav" id="nav">
+          <button class="nav-item" data-act="nav" data-view="dashboard">
+            <span class="nav-ico">◈</span><span data-i18n="nav.dashboard">Bảng điều khiển</span>
+          </button>
+          <button class="nav-item" data-act="nav" data-view="providers">
+            <span class="nav-ico">▦</span><span data-i18n="nav.providers">Nhà cung cấp</span>
+            <em class="nav-count" id="navCountProviders"></em>
+          </button>
+          <button class="nav-item" data-act="nav" data-view="models">
+            <span class="nav-ico">⬡</span><span data-i18n="nav.models">Model</span>
+            <em class="nav-count" id="navCountModels"></em>
+          </button>
+          <button class="nav-item" data-act="nav" data-view="playground">
+            <span class="nav-ico">▶</span><span data-i18n="nav.playground">So sánh</span>
+          </button>
+          <button class="nav-item" data-act="nav" data-view="gateway">
+            <span class="nav-ico">⇄</span><span data-i18n="nav.gateway">Cổng nội bộ</span>
+            <em class="dot" id="gatewayDot"></em>
+          </button>
+          <button class="nav-item" data-act="nav" data-view="export">
+            <span class="nav-ico">↧</span><span data-i18n="nav.export">Xuất cấu hình</span>
+          </button>
+          <button class="nav-item" data-act="nav" data-view="journal">
+            <span class="nav-ico">✎</span><span data-i18n="nav.journal">Nhật ký</span>
+          </button>
+          <button class="nav-item" data-act="nav" data-view="settings">
+            <span class="nav-ico">⚙</span><span data-i18n="nav.settings">Cài đặt</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-foot">
+          <div class="gw-pill" id="gwPill" title="">
+            <span class="gw-dot" id="gwDot"></span>
+            <span id="gwText" data-i18n="gateway.off">Cổng đang tắt</span>
+          </div>
+          <button class="btn btn-ghost btn-block" data-act="probe-all">
+            <span data-i18n="action.probeAll">Đo tất cả</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-title">
+            <h1 id="viewTitle">Bảng điều khiển</h1>
+            <p id="viewSub" class="muted"></p>
+          </div>
+          <div class="topbar-actions">
+            <label class="search">
+              <span>⌕</span>
+              <input id="search" type="search" data-i18n-ph="search.placeholder" placeholder="Tìm nhà cung cấp, model, key…" />
+            </label>
+            <button class="btn btn-ghost" data-act="toggle-lang" id="langBtn" title="Đổi ngôn ngữ">VI</button>
+            <button class="btn btn-ghost" data-act="nav" data-view="journal" id="journalBtn" title="Nhật ký">
+              📓
+            </button>
+            <button class="btn btn-primary" data-act="new-provider">
+              <span data-i18n="action.newProvider">Thêm nhà cung cấp</span>
+            </button>
+          </div>
+        </header>
+
+        <div id="probeBar" class="probe-bar" hidden>
+          <div class="probe-bar-inner">
+            <span class="spinner"></span>
+            <span id="probeText">Đang đo…</span>
+            <div class="probe-progress"><i id="probeProgress"></i></div>
+          </div>
+        </div>
+
+        <section id="view" class="view"></section>
+      </main>
+    </div>
+
+    <aside id="drawer" class="drawer" hidden></aside>
+    <div id="modalRoot"></div>
+    <div id="toastRoot" class="toast-root"></div>
+    <div id="loadError" class="load-error" hidden></div>
+
+    <script src="i18n.js"></script>
+    <script src="util.js"></script>
+    <script src="views.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
